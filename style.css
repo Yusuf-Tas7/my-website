@@ -1,0 +1,263 @@
+/* =========================================
+   1. DEĞİŞKENLER VE GENEL AYARLAR
+   ========================================= */
+:root {
+    --primary-color: #00a3e1;    /* AI temasına uygun canlı mavi */
+    --text-dark: #333333;       /* Ana metin rengi */
+    --text-muted: #777777;      /* Yardımcı metin rengi */
+    --bg-light: #f4f7f9;        /* Sayfa arka planı */
+    --sidebar-bg: #ffffff;      /* Menü arka planı */
+    --border-color: #eeeeee;    /* Çizgi ve kenarlık rengi */
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    display: flex;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* =========================================
+   2. SOL MENÜ (SIDEBAR) TASARIMI
+   ========================================= */
+.sidebar {
+    width: 280px;
+    background-color: var(--sidebar-bg);
+    height: 100vh;
+    position: fixed; /* Masaüstünde sabit kalır */
+    left: 0;
+    top: 0;
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    z-index: 100;
+}
+
+/* Profil Fotoğrafı Alanı */
+.profile-box {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-box img {
+    width: 130px;
+    height: 130px;
+    border-radius: 8px; /* Görseldeki gibi hafif kavisli kare */
+    object-fit: cover;
+    border: 3px solid var(--bg-light);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.profile-box h2 {
+    margin-top: 15px;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* Navigasyon Listesi */
+nav {
+    width: 100%;
+    margin-top: 20px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    padding: 15px 40px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: var(--transition);
+    border-bottom: 1px solid var(--bg-light);
+    position: relative;
+}
+
+nav ul li:hover, nav ul li.active {
+    color: var(--primary-color);
+    background-color: #fafafa;
+}
+
+nav ul li.active::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(--primary-color);
+}
+
+/* Sosyal Medya İkonları */
+.social-links {
+    margin-top: auto; /* En alta iter */
+    display: flex;
+    gap: 15px;
+}
+
+.social-links i {
+    color: #ccc;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.social-links i:hover {
+    color: var(--primary-color);
+}
+
+/* =========================================
+   3. SAĞ İÇERİK (MAIN CONTENT) ALANI
+   ========================================= */
+.content {
+    margin-left: 280px; /* Menü genişliği kadar boşluk bırak */
+    flex: 1;
+    padding: 60px;
+    background-color: #ffffff;
+}
+
+.page {
+    display: none; /* Sayfalar varsayılan olarak gizli */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.page.active {
+    display: block;
+    animation: fadeInUp 0.6s ease;
+}
+
+/* Hero Section (Giriş) */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    margin-bottom: 60px;
+}
+
+.hero-text span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 10px 0 20px 0;
+    color: #222;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 500px;
+}
+
+.btn-cv {
+    margin-top: 30px;
+    padding: 12px 30px;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: 4px;
+}
+
+.btn-cv:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Yapay Zeka Uzmanlık Kartları (Services) */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.service-card {
+    padding: 30px;
+    background: #fcfcfc;
+    border-radius: 8px;
+    border-bottom: 3px solid transparent;
+    transition: var(--transition);
+}
+
+.service-card:hover {
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.service-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* =========================================
+   4. RESPONSIVE (MOBIL UYUMLULUK)
+   ========================================= */
+@media (max-width: 992px) {
+    .hero { flex-direction: column-reverse; text-align: center; }
+    .hero-text h1 { font-size: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+    body { flex-direction: column; }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 20px;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 30px 20px;
+    }
+
+    nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    nav ul li {
+        padding: 8px 15px;
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+    }
+
+    nav ul li.active::after { display: none; }
+}
+
+/* Animasyon */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
