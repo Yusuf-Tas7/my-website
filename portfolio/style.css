@@ -1,3 +1,17 @@
+:root {
+  --primary-color: #6366f1;    /* Canlı bir mor/mavi - Modern */
+  --bg-light: #f8fafc;        /* Çok açık gri arka plan */
+  --text-dark: #1e293b;       /* Koyu antrasit yazı */
+  --card-bg: #ffffff;         /* Beyaz kartlar */
+  --transition: all 0.3s ease; /* Tüm geçişler için standart */
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  font-family: 'Inter', sans-serif; /* Birazdan ekleyeceğiz */
+  line-height: 1.6;
+}
 body {
   font-family: Arial, sans-serif;
   background: #f5f5f5;
@@ -40,3 +54,4 @@ body.dark .project {
     transform: translateY(0);
   }
 }
+
